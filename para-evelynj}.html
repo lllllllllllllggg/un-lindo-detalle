@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flores Amarillas para Evelyn</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Playfair Display', 'Georgia', serif;
+            background: linear-gradient(135deg, #FFF9E6 0%, #FFFBF0 50%, #FFF8E7 100%);
+            color: #2c1810;
+            line-height: 1.8;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header elegante */
+        .header {
+            text-align: center;
+            margin: 4rem 0 3rem 0;
+            position: relative;
+        }
+
+        .flowers-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 3rem;
+            margin-bottom: 3rem;
+            perspective: 1000px;
+        }
+
+        .flower-wrapper {
+            width: 140px;
+            height: 160px;
+            position: relative;
+        }
+
+        .flower {
+            width: 100%;
+            height: 100%;
+            animation: sway 4s ease-in-out infinite;
+            filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.15));
+        }
+
+        .flower:nth-child(2) {
+            animation: sway 4.5s ease-in-out infinite 0.5s;
+        }
+
+        .flower:nth-child(3) {
+            animation: sway 3.8s ease-in-out infinite 0.25s;
+        }
+
+        @keyframes sway {
+            0%, 100% {
+                transform: translateY(0px) rotateZ(0deg);
+            }
+            25% {
+                transform: translateY(-8px) rotateZ(1deg);
+            }
+            50% {
+                transform: translateY(-15px) rotateZ(0deg);
+            }
+            75% {
+                transform: translateY(-8px) rotateZ(-1deg);
+            }
+        }
+
+        .header-title {
+            font-size: 4rem;
+            color: #D4A574;
+            font-weight: 400;
+            letter-spacing: 0.15em;
+            margin-bottom: 1rem;
+            text-shadow: 3px 3px 6px rgba(212, 165, 116, 0.2);
+        }
+
+        .header-subtitle {
+            font-size: 1.5rem;
+            color: #B8860B;
+            font-weight: 300;
+            font-style: italic;
+            letter-spacing: 0.08em;
+        }
+
+        .header-subtitle span {
+            font-size: 1.8rem;
+            margin-left: 0.5rem;
+        }
+
+        /* Mensaje principal */
+        .welcome-section {
+            background: rgba(255, 248, 220, 0.7);
+            backdrop-filter: blur(10px);
+            padding: 4rem;
+            border-radius: 20px;
+            text-align: center;
+            margin: 3rem 0;
+            border: 2px solid rgba(212, 165, 116, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .welcome-section h2 {
+            font-size: 2.8rem;
+            color: #D4A574;
+            margin-bottom: 2rem;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+        }
+
+        .welcome-section p {
+            font-size: 1.2rem;
+            color: #4a3728;
+            line-height: 2;
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+        }
+
+        /* Reproductor de música */
+        .music-section {
+            margin: 3rem 0;
+            text-align: center;
+        }
+
+        .music-title {
+            font-size: 2.2rem;
+            color: #D4A574;
+            margin-bottom: 2rem;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+        }
+
+        .player-container {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.15) 0%, rgba(212, 165, 116, 0.1) 100%);
+            padding: 2.5rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(212, 165, 116, 0.2);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+            margin-bottom: 2rem;
+        }
+
+        audio {
+            width: 100%;
+            height: 50px;
+            border-radius: 10px;
+        }
+
+        .music-note {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Mensajes motivacionales */
+        .messages-grid {
+            display: grid;
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .message-card {
+            background: linear-gradient(135deg, rgba(255, 250, 205, 0.6) 0%, rgba(255, 248, 220, 0.8) 100%);
+            padding: 3rem;
+            border-radius: 15px;
+            border-left: 5px solid #FFD700;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+            transition: all 0.4s ease;
+            backdrop-filter: blur(10px);
+            animation: slideUp 0.8s ease-out both;
+        }
+
+        .message-card:nth-child(1) { animation-delay: 0.1s; }
+        .message-card:nth-child(2) { animation-delay: 0.2s; }
+        .message-card:nth-child(3) { animation-delay: 0.3s; }
+        .message-card:nth-child(4) { animation-delay: 0.4s; }
+        .message-card:nth-child(5) { animation-delay: 0.5s; }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+            border-left-color: #FFB347;
+        }
+
+        .message-card::before {
+            content: '✿';
+            position: absolute;
+            left: 2rem;
+            top: -1.5rem;
+            font-size: 2rem;
+            color: #FFD700;
+            animation: bloom 0.6s ease-out;
+        }
+
+        @keyframes bloom {
+            from {
+                opacity: 0;
+                transform: scale(0);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .message-card p {
+            font-size: 1.1rem;
+            color: #3d2817;
+            line-height: 1.9;
+            font-weight: 300;
+        }
+
+        /* Separadores decorativos */
+        .divider {
+            text-align: center;
+            margin: 2.5rem 0;
+            font-size: 1.8rem;
+            color: #FFD700;
+            opacity: 0.7;
+            letter-spacing: 0.5em;
+        }
+
+        /* Cierre */
+        .closing {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2) 0%, rgba(212, 165, 116, 0.15) 100%);
+            padding: 4rem;
+            border-radius: 20px;
+            text-align: center;
+            margin: 4rem 0;
+            border: 2px solid #FFD700;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+            animation: fadeIn 1.5s ease-out 0.3s both;
+        }
+
+        .closing h3 {
+            font-size: 2.5rem;
+            color: #D4A574;
+            margin-bottom: 2rem;
+            font-weight: 400;
+            letter-spacing: 0.08em;
+        }
+
+        .closing p {
+            font-size: 1.15rem;
+            color: #4a3728;
+            margin: 1.5rem 0;
+            font-style: italic;
+            font-weight: 300;
+            line-height: 1.9;
+        }
+
+        .signature {
+            font-size: 1.8rem;
+            color: #D4A574;
+            margin-top: 2.5rem;
+            font-style: italic;
+            font-weight: 400;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 3rem 0;
+            color: #B8860B;
+            font-size: 0.95rem;
+            letter-spacing: 0.05em;
+        }
+
+        .footer-flower {
+            font-size: 2rem;
+            animation: float 3s ease-in-out infinite;
+            margin-top: 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-title {
+                font-size: 2.8rem;
+            }
+
+            .header-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .welcome-section {
+                padding: 2.5rem;
+            }
+
+            .welcome-section h2 {
+                font-size: 2rem;
+            }
+
+            .message-card {
+                padding: 2rem;
+            }
+
+            .closing {
+                padding: 2.5rem;
+            }
+
+            .flowers-container {
+                gap: 1.5rem;
+            }
+
+            .flower-wrapper {
+                width: 100px;
+                height: 120px;
+            }
+
+            .container {
+                padding: 1.5rem;
+            }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header con flores hermosas -->
+    <div class="container">
+        <div class="header">
+            <div class="flowers-container">
+                <!-- Flor 1 -->
+                <div class="flower-wrapper">
+                    <svg class="flower" viewBox="0 0 120 140" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Pétalos principales -->
+                        <g id="petals">
+                            <ellipse cx="60" cy="20" rx="16" ry="22" fill="#FFD700" opacity="0.95"/>
+                            <ellipse cx="85" cy="35" rx="16" ry="22" fill="#FFE744" transform="rotate(60 85 35)"/>
+                            <ellipse cx="90" cy="65" rx="16" ry="22" fill="#FFD700" transform="rotate(120 90 65)"/>
+                            <ellipse cx="75" cy="90" rx="16" ry="22" fill="#FFC700" transform="rotate(180 75 90)"/>
+                            <ellipse cx="45" cy="95" rx="16" ry="22" fill="#FFD700" transform="rotate(240 45 95)"/>
+                            <ellipse cx="30" cy="65" rx="16" ry="22" fill="#FFE744" transform="rotate(300 30 65)"/>
+                            <ellipse cx="35" cy="35" rx="16" ry="22" fill="#FFD700" transform="rotate(360 35 35)"/>
+                            <ellipse cx="60" cy="25" rx="14" ry="20" fill="#FFEB3B" opacity="0.8"/>
+                            <ellipse cx="70" cy="45" rx="14" ry="20" fill="#FFC700" opacity="0.8" transform="rotate(45 70 45)"/>
+                        </g>
+                        
+                        <!-- Centro de la flor -->
+                        <circle cx="60" cy="65" r="20" fill="#FFB347"/>
+                        <circle cx="60" cy="65" r="16" fill="#FFA500"/>
+                        <circle cx="60" cy="63" r="10" fill="#FF8C00"/>
+                        
+                        <!-- Detalles en el centro -->
+                        <circle cx="55" cy="62" r="2" fill="#8B4513"/>
+                        <circle cx="65" cy="62" r="2" fill="#8B4513"/>
+                        <circle cx="60" cy="68" r="2" fill="#8B4513"/>
+                        
+                        <!-- Tallo -->
+                        <path d="M 60 85 Q 58 100 55 120" stroke="#2D5016" stroke-width="3" fill="none" stroke-linecap="round"/>
+                        <path d="M 60 85 Q 62 105 65 120" stroke="#228B22" stroke-width="2" fill="none" opacity="0.7"/>
+                        
+                        <!-- Hojas -->
+                        <ellipse cx="48" cy="100" rx="8" ry="16" fill="#228B22" transform="rotate(-35 48 100)"/>
+                        <ellipse cx="72" cy="105" rx="8" ry="16" fill="#2D5016" transform="rotate(35 72 105)"/>
+                        
+                        <!-- Venas en las hojas -->
+                        <path d="M 48 92 Q 48 100 48 108" stroke="#1a4d0a" stroke-width="1" fill="none"/>
+                        <path d="M 72 97 Q 72 105 72 113" stroke="#1a4d0a" stroke-width="1" fill="none"/>
+                    </svg>
+                </div>
+
+                <!-- Flor 2 -->
+                <div class="flower-wrapper">
+                    <svg class="flower" viewBox="0 0 120 140" xmlns="http://www.w3.org/2000/svg">
+                        <g id="petals">
+                            <ellipse cx="60" cy="20" rx="16" ry="22" fill="#FFE744" opacity="0.95"/>
+                            <ellipse cx="85" cy="35" rx="16" ry="22" fill="#FFD700" transform="rotate(60 85 35)"/>
+                            <ellipse cx="90" cy="65" rx="16" ry="22" fill="#FFE744" transform="rotate(120 90 65)"/>
+                            <ellipse cx="75" cy="90" rx="16" ry="22" fill="#FFD700" transform="rotate(180 75 90)"/>
+                            <ellipse cx="45" cy="95" rx="16" ry="22" fill="#FFC700" transform="rotate(240 45 95)"/>
+                            <ellipse cx="30" cy="65" rx="16" ry="22" fill="#FFD700" transform="rotate(300 30 65)"/>
+                            <ellipse cx="35" cy="35" rx="16" ry="22" fill="#FFE744" transform="rotate(360 35 35)"/>
+                            <ellipse cx="60" cy="25" rx="14" ry="20" fill="#FFEB3B" opacity="0.8"/>
+                            <ellipse cx="70" cy="45" rx="14" ry="20" fill="#FFD700" opacity="0.8" transform="rotate(45 70 45)"/>
+                        </g>
+                        
+                        <circle cx="60" cy="65" r="20" fill="#FFB347"/>
+                        <circle cx="60" cy="65" r="16" fill="#FFA500"/>
+                        <circle cx="60" cy="63" r="10" fill="#FF8C00"/>
+                        
+                        <circle cx="55" cy="62" r="2" fill="#8B4513"/>
+                        <circle cx="65" cy="62" r="2" fill="#8B4513"/>
+                        <circle cx="60" cy="68" r="2" fill="#8B4513"/>
+                        
+                        <path d="M 60 85 Q 58 100 55 120" stroke="#2D5016" stroke-width="3" fill="none" stroke-linecap="round"/>
+                        <path d="M 60 85 Q 62 105 65 120" stroke="#228B22" stroke-width="2" fill="none" opacity="0.7"/>
+                        
+                        <ellipse cx="48" cy="100" rx="8" ry="16" fill="#2D5016" transform="rotate(-35 48 100)"/>
+                        <ellipse cx="72" cy="105" rx="8" ry="16" fill="#228B22" transform="rotate(35 72 105)"/>
+                        
+                        <path d="M 48 92 Q 48 100 48 108" stroke="#1a4d0a" stroke-width="1" fill="none"/>
+                        <path d="M 72 97 Q 72 105 72 113" stroke="#1a4d0a" stroke-width="1" fill="none"/>
+                    </svg>
+                </div>
+
+                <!-- Flor 3 -->
+                <div class="flower-wrapper">
+                    <svg class="flower" viewBox="0 0 120 140" xmlns="http://www.w3.org/2000/svg">
+                        <g id="petals">
+                            <ellipse cx="60" cy="20" rx="16" ry="22" fill="#FFC700" opacity="0.95"/>
+                            <ellipse cx="85" cy="35" rx="16" ry="22" fill="#FFE744" transform="rotate(60 85 35)"/>
+                            <ellipse cx="90" cy="65" rx="16" ry="22" fill="#FFD700" transform="rotate(120 90 65)"/>
+                            <ellipse cx="75" cy="90" rx="16" ry="22" fill="#FFE744" transform="rotate(180 75 90)"/>
+                            <ellipse cx="45" cy="95" rx="16" ry="22" fill="#FFD700" transform="rotate(240 45 95)"/>
+                            <ellipse cx="30" cy="65" rx="16" ry="22" fill="#FFC700" transform="rotate(300 30 65)"/>
+                            <ellipse cx="35" cy="35" rx="16" ry="22" fill="#FFD700" transform="rotate(360 35 35)"/>
+                            <ellipse cx="60" cy="25" rx="14" ry="20" fill="#FFEB3B" opacity="0.8"/>
+                            <ellipse cx="70" cy="45" rx="14" ry="20" fill="#FFE744" opacity="0.8" transform="rotate(45 70 45)"/>
+                        </g>
+                        
+                        <circle cx="60" cy="65" r="20" fill="#FFB347"/>
+                        <circle cx="60" cy="65" r="16" fill="#FFA500"/>
+                        <circle cx="60" cy="63" r="10" fill="#FF8C00"/>
+                        
+                        <circle cx="55" cy="62" r="2" fill="#8B4513"/>
+                        <circle cx="65" cy="62" r="2" fill="#8B4513"/>
+                        <circle cx="60" cy="68" r="2" fill="#8B4513"/>
+                        
+                        <path d="M 60 85 Q 58 100 55 120" stroke="#2D5016" stroke-width="3" fill="none" stroke-linecap="round"/>
+                        <path d="M 60 85 Q 62 105 65 120" stroke="#228B22" stroke-width="2" fill="none" opacity="0.7"/>
+                        
+                        <ellipse cx="48" cy="100" rx="8" ry="16" fill="#228B22" transform="rotate(-35 48 100)"/>
+                        <ellipse cx="72" cy="105" rx="8" ry="16" fill="#2D5016" transform="rotate(35 72 105)"/>
+                        
+                        <path d="M 48 92 Q 48 100 48 108" stroke="#1a4d0a" stroke-width="1" fill="none"/>
+                        <path d="M 72 97 Q 72 105 72 113" stroke="#1a4d0a" stroke-width="1" fill="none"/>
+                    </svg>
+                </div>
+            </div>
+
+            <h1 class="header-title">Flores Amarillas</h1>
+            <p class="header-subtitle">Para ti, Evelyn <span>💛</span></p>
+        </div>
+
+        <!-- Mensaje principal -->
+        <div class="welcome-section">
+            <h2>Para mi mejor amiga</h2>
+            <p>Evelyn, quiero que sepas que sin importar la distancia, eres una persona increíblemente valiosa en mi vida.</p>
+            <p>Estas flores amarillas representan la esperanza, la alegría y esa amistad real que no se rompe por kilómetros. Eres mi hermana de corazón.</p>
+        </div>
+
+        <!-- Reproductor de música -->
+        <div class="music-section">
+            <div class="music-note">🎵</div>
+            <h2 class="music-title">Una Canción para Ti</h2>
+            <div class="player-container">
+                <audio autoplay loop>
+                    <source src="flores-amarillas.mp3" type="audio/mpeg">
+                    Tu navegador no soporta el elemento de audio.
+                </audio>
+            </div>
+            <p style="color: #B8860B; font-style: italic;">Escucha y siente cada nota con el corazón</p>
+        </div>
+
+        <!-- Mensajes especiales -->
+        <div class="divider">✿ ✿ ✿</div>
+
+        <div class="messages-grid">
+            <div class="message-card">
+                <p>Eres una persona fuerte y valiosa de una manera que quizás ni siquiera te das cuenta. La forma en que te comportas y encaras la vida me inspira todos los días.</p>
+            </div>
+
+            <div class="message-card">
+                <p>Tu esencia ilumina todo a tu alrededor. No es la cercanía lo que te hace especial, es tu bondad, tu calidez, tu fortaleza interior. Eres luz pura.</p>
+            </div>
+
+            <div class="message-card">
+                <p>Te mereces ser valorada y respetada exactamente como eres. No dejes que nada en el mundo te haga dudar de cuánto vales. Eres extraordinaria, Evelyn.</p>
+            </div>
+
+            <div class="message-card">
+                <p>La distancia nunca ha sido un obstáculo para nuestra amistad. Cada momento compartido contigo es genuino, profundo y significativo. Eso es lo que importa.</p>
+            </div>
+
+            <div class="message-card">
+                <p>Tengo suerte de tenerte como amiga. Eres esa persona en la que puedo confiar, con la que puedo ser yo misma. Eres mi hermana elegida, mi compañera de vida.</p>
+            </div>
+        </div>
+
+        <div class="divider">✿ ✿ ✿</div>
+
+        <!-- Cierre emotivo -->
+        <div class="closing">
+            <h3>Siempre estaré para ti</h3>
+            <p>En los buenos momentos y en los difíciles, en la distancia y en la cercanía. Puedes contar conmigo siempre.</p>
+            <p>No importa cuántos kilómetros nos separen, nuestra amistad es real, es fuerte y es para toda la vida.</p>
+            <p class="signature">Con todo mi cariño de amiga 💛<br>Siempre aquí para ti</p>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>Hecho con todo el cariño del mundo por una amiga</p>
+            <div class="footer-flower">🌼 ✿ 🌼</div>
+        </div>
+    </div>
+</body>
+</html>
